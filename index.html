@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>faqBubble</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./resources/styles/style.css">
+  </head>
+  <body>
+    <!-- container element for chat window -->
+    <div id="chat"></div>
+
+    <script src="./resources/scripts/Bubbles.js"></script>
+    <script>
+      // initialize by constructing a named function...
+      var chatWindow = new Bubbles(
+        document.getElementById("chat"), // ...passing HTML container element...
+        "chatWindow" // ...and name of the function as a parameter
+      );
+
+      // conversation object defined separately, but just the same as in the
+      
+      var convo = {
+        ice: {
+          says: ["Hi", 
+          "Would you like Q1, Q2 or Q3?",
+        ],
+          reply: [
+            {
+              question: "Q1",
+              answer: "q1",
+            },
+            {
+              question: "Q2",
+              answer: "q2",
+            },
+            {
+              question: "Q3",
+              answer: "q3",
+            },
+            {
+              question: "Restart",
+              answer: "ice",
+            },
+          ],
+        },
+        // 
+        "q1": {
+          says: ["Q1"],
+          reply: [
+            {
+              question: "1.1",
+              answer: "q11",
+            },
+          ],
+        },
+        "q11": {
+          says: ["Q1.1"],
+          reply: [
+            {
+              question: "Restart",
+              answer: "ice",
+            },
+          ],
+        },
+        "q2": {
+          says: ["Q2"],
+          reply: [
+            {
+              question: "Restart",
+              answer: "ice",
+            },
+          ],
+        },
+        "q3": {
+          says: ["Q3"],
+          reply: [
+            {
+              question: "Restart",
+              answer: "ice",
+            },
+          ],
+        },
+
+      };
+
+      // this function is called when user clicks restart
+      var reStart = function () {
+        chatWindow.talk(convo, "ice"); // the conversation can be easily restarted from here.
+      };
+
+      // pass JSON to your function and you're done!
+      chatWindow.talk(convo);
+    </script>
+  </body>
+</html>

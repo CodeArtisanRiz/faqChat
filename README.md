@@ -16,7 +16,7 @@ FAQChat is a chatbot project powered by [Chat-Bubble](https://github.com/dmitriz
 
 ## Demo
 
-You can check out the live demo of FAQChat [here](link-to-your-live-demo).
+You can check out the live demo of FAQChat [here](https://xtremist96.github.io/faqChat/).
 
 ## How to Use
 

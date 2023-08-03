@@ -26,11 +26,7 @@ You can check out the live demo of FAQChat [here](https://xtremist96.github.io/f
    git clone https://github.com/xtremist96/faqChat.git
    ```
 
-2. Set up the necessary dependencies and configure your web server to host the project.
-
-3. Use the `faqChat.js` script in your web application to integrate the FAQChat chatbot.
-
-4. Customize the chatbot settings and messages according to your specific use case.
+2. Change the Questions and reply as per requirement.
 
 ## Give it a Star!
 

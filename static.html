@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>faqBubble</title>
+
+	<!-- for mobile screens -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./resources/styles/style.css">
+</head>
+<body>
+
+<!-- container element for chat window -->
+<div id="chat"></div>
+
+<!-- import the JavaScript file -->
+<script src="./resources/scripts/Bubbles.js"></script>
+<script>
+var chatWindow = new Bubbles(document.getElementById("chat"), "chatWindow", {
+
+  inputCallbackFn: function(o) {
+    // add error conversation block & recall it if no answer matched
+    var miss = function() {
+      chatWindow.talk(
+        {
+          "i-dont-get-it": {
+            says: [
+              "Sorry, I don't get it 😕. Pls repeat? Or you can just click below 👇"
+            ],
+            reply: o.convo[o.standingAnswer].reply
+          }
+        },
+        "i-dont-get-it"
+      )
+    }
+
+    // do this if answer found
+    var match = function(key) {
+      setTimeout(function() {
+        chatWindow.talk(convo, key) // restart current convo from point found in the answer
+      }, 600)
+    }
+
+    // sanitize text for search function
+    var strip = function(text) {
+      return text.toLowerCase().replace(/[\s.,\/#!$%\^&\*;:{}=\-_'"`~()]/g, "")
+    }
+
+    // search function
+    var found = false
+    o.convo[o.standingAnswer].reply.forEach(function(e, i) {
+      strip(e.question).includes(strip(o.input)) && o.input.length > 0
+        ? (found = e.answer)
+        : found ? null : (found = false)
+    })
+    found ? match(found) : miss()
+  }
+}) // done setting up chat-bubble
+
+// conversation object defined separately, but just the same as in the
+// "Basic chat-bubble Example" (1-basics.html)
+
+var convo = {
+    "1.1": {
+        "says": [
+            "1.1 Ans"
+        ],
+        "reply": [
+            {
+                "question": "Restart",
+                "answer": "ice"
+            }
+        ]
+    },
+    "ice": {
+        "says": [
+            "Hi, Would you like Q1, Q2 or Q3?"
+        ],
+        "reply": [
+            {
+                "question": "q1",
+                "answer": "q1"
+            },
+            {
+                "question": "q2",
+                "answer": "q2"
+            },
+            {
+                "question": "q3",
+                "answer": "q3"
+            }
+        ]
+    },
+    "q1": {
+        "says": [
+            "Q1 ans choose 1.1"
+        ],
+        "reply": [
+            {
+                "question": "1.1",
+                "answer": "1.1"
+            },
+            {
+                "question": "q1",
+                "answer": "q1"
+            },
+            {
+                "question": "q2",
+                "answer": "q2"
+            },
+            {
+                "question": "q3",
+                "answer": "q3"
+            }
+        ]
+    },
+    "q11": {
+        "says": [
+            "q11 Answer"
+        ],
+        "reply": [
+            {
+                "question": "Restart",
+                "answer": "ice"
+            }
+        ]
+    },
+    "q2": {
+        "says": [
+            "q2Answer"
+        ],
+        "reply": [
+            {
+                "question": "Restart",
+                "answer": "ice"
+            }
+        ]
+    },
+    "q3": {
+        "says": [
+            "Q3Ans"
+        ],
+        "reply": [
+            {
+                "question": "Restart",
+                "answer": "ice"
+            }
+        ]
+    }
+};
+
+// pass JSON to your function and you're done!
+chatWindow.talk(convo)
+</script>
+<!-- <?php
+
+?> -->
+</body>

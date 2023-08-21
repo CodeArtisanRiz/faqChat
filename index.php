@@ -1,68 +1,5 @@
 <?php
-// Replace with your database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "faqChat";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Fetch conversations (questions and answers)
-$query = "SELECT din, dout, dopt
-          FROM conversations";
-
-$result = $conn->query($query);
-
-// Prepare JSON structure
-$conversation = [];
-while ($row = $result->fetch_assoc()) {
-  $questionID = $row['din'];
-  $answers = explode(',', $row['dopt']);
-
-  if (!isset($conversation[$questionID])) {
-      $conversation[$questionID] = [
-          'says' => [$row['dout']],
-          'reply' => [],
-      ];
-  }
-
-  foreach ($answers as $answer) {
-      if ($answer === 'Restart') {
-          $conversation[$questionID]['reply'][] = [
-              'question' => $answer,
-              'answer' => 'ice',
-          ];
-      } else {
-          $conversation[$questionID]['reply'][] = [
-              'question' => $answer,
-              'answer' => $answer,
-          ];
-      }
-  }
-}
-
-// Close the database connection
-$conn->close();
-
-// Convert to JSON
-// $json = json_encode($conversation, JSON_PRETTY_PRINT);
-// Convert to JSON without escaping keys
-$json = json_encode($conversation, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-
-// Replace ":1," with ':"ice",'
-// $json = str_replace(':1,', ':"ice",', $json);
-// $json = str_replace(':1}', ':"ice"}', $json);
-// $json = str_replace(':1\n', ':"ice",', $json);
-
-// Output the JSON
-
+include './res/scripts/dataFetch.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,16 +9,16 @@ $json = json_encode($conversation, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | 
 
 	<!-- for mobile screens -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="./resources/styles/style.css">
+  <!-- UI Style -->
+  <link rel="stylesheet" href="./res/styles/style.css">
 </head>
 <body>
 
 <!-- container element for chat window -->
-<div id="chat"></div>
+    <div id="chat"></div>
 
 <!-- import the JavaScript file -->
-<script src="./resources/scripts/Bubbles.js"></script>
+<script src="./res/scripts/Bubbles.js"></script>
 <script>
 var chatWindow = new Bubbles(document.getElementById("chat"), "chatWindow", {
 
@@ -105,7 +42,7 @@ var chatWindow = new Bubbles(document.getElementById("chat"), "chatWindow", {
     var match = function(key) {
       setTimeout(function() {
         chatWindow.talk(convo, key) // restart current convo from point found in the answer
-      }, 600)
+      }, 1)
     }
 
     // sanitize text for search function
@@ -122,22 +59,14 @@ var chatWindow = new Bubbles(document.getElementById("chat"), "chatWindow", {
     })
     found ? match(found) : miss()
   }
-}) // done setting up chat-bubble
-
-// conversation object defined separately, but just the same as in the
-// "Basic chat-bubble Example" (1-basics.html)
+})
 
 
-// json Inject
-// var convo =
-
-
+// Injecting JSON to convo
 var convo = <?php echo $json; ?>;
 
-// pass JSON to your function and you're done!
+// passing JSON to function and done!
 chatWindow.talk(convo)
 </script>
-<!-- <?php
-
-?> -->
 </body>
+</html>

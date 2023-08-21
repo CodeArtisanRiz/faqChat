@@ -8,7 +8,7 @@ body {
 }
 .bubble-container .input-wrap textarea {
   margin: 0;
-  width: calc(100% - 30px);
+  width: calc(100% - 40px);
 }
 /* setup container styles */
 .bubble-container {

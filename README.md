@@ -2,8 +2,8 @@ Sure, here's the updated README.md without the usage example:
 
 # FAQChat - Chatbot powered by Chat-Bubble
 
-[![GitHub stars](https://img.shields.io/github/stars/xtremist96/faqChat.svg?style=social&label=Star&maxAge=2592000)](https://github.com/xtremist96/faqChat/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/xtremist96/faqChat.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/xtremist96/faqChat/fork)
+[![GitHub stars](https://img.shields.io/github/stars/CodeArtisanRiz/faqChat.svg?style=social&label=Star&maxAge=2592000)](https://github.com/CodeArtisanRiz/faqChat/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/CodeArtisanRiz/faqChat.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/CodeArtisanRiz/faqChat/fork)
 
 FAQChat is a chatbot project powered by [Chat-Bubble](https://github.com/dmitrizzle/chat-bubble/tree/master) that provides answers to frequently asked questions. The Chat-Bubble library is a user-friendly and customizable chat UI component for web applications.
 
@@ -16,21 +16,21 @@ FAQChat is a chatbot project powered by [Chat-Bubble](https://github.com/dmitriz
 
 ## Demo
 
-You can check out the live demo of FAQChat [here](https://xtremist96.github.io/faqChat/).
+You can check out the live demo of FAQChat [here](https://CodeArtisanRiz.github.io/faqChat/).
 
 ## How to Use
 
 1. Clone the repository to your local machine using the following command:
 
    ```bash
-   git clone https://github.com/xtremist96/faqChat.git
+   git clone https://github.com/CodeArtisanRiz/faqChat.git
    ```
 
 2. Change the Questions and reply as per requirement.
 
 ## Give it a Star!
 
-If you find this project helpful or interesting, please consider giving it a star on GitHub by clicking [here](https://github.com/xtremist96/faqChat).
+If you find this project helpful or interesting, please consider giving it a star on GitHub by clicking [here](https://github.com/CodeArtisanRiz/faqChat).
 
 ## Contributing
 
